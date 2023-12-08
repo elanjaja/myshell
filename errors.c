@@ -20,7 +20,7 @@ void error_puts(char *str)
 }
 
 /**
- * errror_putchar - writes the character c to standard error output
+ * error_putchar - writes the character c to standard error output
  * @chr: The character to print
  *
  * This function writes a character to the standard error output.
