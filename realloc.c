@@ -32,14 +32,14 @@ void free_string(char **as)
 }
 
 /**
- * realloc - reallocates a block of memory
+ * _realloc - reallocates a block of memory
  * @ptr: pointer to previous malloc'ated block
  * @old_size: byte size of previous block
  * @new_size: byte size of new block
  *
  * Return: pointer to da ol'block nameen.
  */
-void *realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *p;
 

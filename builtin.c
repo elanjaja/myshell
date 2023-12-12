@@ -48,13 +48,13 @@ int my_cd(data_t *data)
 		dir = get_env(data, "HOME=");
 		if (!dir)
 			chdir_result =
-				chdir((dir = get_env(info, "PWD=")) ? dir : "/");
+				chdir((dir = _getenv(data, "PWD=")) ? dir : "/");
 		else
 			chdir_result = chdir(dir);
 	}
 	else if (string_compare(data->argv[1], "-") == 0)
 	{
-		if (!get_env(data, "OLDPWD="))
+		if (!_getenv(data, "OLDPWD="))
 		{
 			print_string(a);
 			write_character('\n');
@@ -73,7 +73,7 @@ int my_cd(data_t *data)
 	}
 	else
 	{
-		set_env(data, "OLDPWD", get_env(data, "PWD="));
+		set_env(data, "OLDPWD", _getenv(data, "PWD="));
 		set_env(data, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);

@@ -17,7 +17,7 @@ void clear_data(data_t *data)
  * @data: struct address
  * @av: argument vector
  */
-ivoid set_data(data_t *data, char **av)
+void set_data(data_t *data, char **av)
 {
 	int a = 0;
 
@@ -51,14 +51,14 @@ ivoid set_data(data_t *data, char **av)
  */
 void free_data(data_t *data, int af)
 {
-	free_string(info->argv);
+	free_string(data->argv);
 	data->argv = NULL;
 	data->path = NULL;
 	if (af)
 	{
 		if (!data->cmd_buf)
 			free(data->arg);
-		if (info->env)
+		if (data->env)
 			free_list_node(&(data->env));
 		if (data->history)
 			free_list_node(&(data->history));
@@ -68,7 +68,7 @@ void free_data(data_t *data, int af)
 			data->environ = NULL;
 		bfree((void **)data->cmd_buf);
 		if (data->readfd > 2)
-			close(dataa->readfd);
+			close(data->readfd);
 		write_character(BUF_FLUSH);
 	}
 }

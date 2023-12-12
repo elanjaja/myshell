@@ -14,13 +14,13 @@ int print_env(data_t *data)
 }
 
 /**
- * get_env - gets the value of an environment variable
+ * _getenv - gets the value of an environment variable
  * @data: framework containing potential arguments. Used to maintain
  * @name: environment  variable name
  *
  * Return: the value
  */
-char *get_env(data_t data, const char *name)
+char *_getenv(data_t data, const char *name)
 {
 	list_t *node = data->env;
 	char *ptr;
@@ -36,13 +36,13 @@ char *get_env(data_t data, const char *name)
 }
 
 /**
- * set_env - Create a new environment variable or
+ * my_setenv - Create a new environment variable or
  *  make changes to an existing one
  * @data: A framework that holds possible parameters,
  *  utilized to uphold consistent function format.
  *  Return: Always return 0
  */
-int set_env(data_t *data)
+int my_setenv(data_t *data)
 {
 	if (data->argc != 3)
 	{
@@ -55,12 +55,12 @@ int set_env(data_t *data)
 }
 
 /**
- * unset_env - Removes an environment variable
+ * my_unsetenv - Removes an environment variable
  * @data: A framework that holds possible parameters,
  * utilized to uphold consistent function format.
  *  Return: Always return 0
  */
-int unset_env(data_t *data)
+int my_unsetenv(data_t *data)
 {
 	int a;
 
@@ -70,7 +70,7 @@ int unset_env(data_t *data)
 		return (1);
 	}
 	for (a = 1; a <= data->argc; a++)
-		unset_env(data, data->argv[i]);
+		unset_env(data, data->argv[a]);
 
 	return (0);
 }

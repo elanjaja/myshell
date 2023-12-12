@@ -40,7 +40,7 @@ void print_error(data_t *data, char *estr)
 	error_puts(data->fname);
 	error_puts(": ");
 	print_decimal(data->linecount, STDERR_FILENO);
-	erro_puts(": ");
+	error_puts(": ");
 	error_puts(data->argv[0]);
 	error_puts(": ");
 	error_puts(estr);

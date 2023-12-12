@@ -23,7 +23,7 @@ int shell_loop(data_t *data, char **av)
 		{
 			set_data(data, av);
 			builtin_return = find_builtin_command(data);
-			if (builtin_ret == -1)
+			if (builtin_return == -1)
 				find_cmd(data);
 		}
 		else if (interactive_mood(data))
@@ -60,8 +60,8 @@ int find_builtin_command(data_t *data)
 		{"env", print_env},
 		{"help", my_help},
 		{"history", display_history},
-		{"setenv", set_env},
-		{"unsetenv", unset_env},
+		{"setenv", my_setenv},
+		{"unsetenv", my_unsetenv},
 		{"cd", my_cd},
 		{"alias", manage_alias},
 		{NULL, NULL}
@@ -71,7 +71,7 @@ int find_builtin_command(data_t *data)
 		if (string_compare(data->argv[0], builtintbl[a].type) == 0)
 		{
 			data->linecount++;
-			built_in_return = builtintbl[a].func(data);
+			built_in_return = builtintbl[a] .func(data);
 			break;
 		}
 	return (built_in_return);
@@ -100,7 +100,7 @@ void find_cmd(data_t *data)
 	if (!k)
 		return;
 
-	path = find_path(data, get_env(data, "PATH="), data->argv[0]);
+	path = find_path(data, _getenv(data, "PATH="), data->argv[0]);
 	if (path)
 	{
 		data->path = path;
@@ -108,7 +108,7 @@ void find_cmd(data_t *data)
 	}
 	else
 	{
-		if ((interactive_mood(data) || get_env(data, "PATH=")
+		if ((interactive_mood(data) || _getenv(data, "PATH=")
 			|| data->argv[0][0] == '/') && executable(data, data->argv[0]))
 			execute_command(data);
 		else if (*(data->arg) != '\n')

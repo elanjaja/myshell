@@ -47,7 +47,7 @@ int alias_set(data_t *data, char *str)
 {
 	char *ptr;
 
-	p = string_chr(str, '=');
+	ptr = string_chr(str, '=');
 	if (!ptr)
 		return (1);
 	if (!*++ptr)
@@ -105,10 +105,10 @@ int manage_alias(data_t *data)
 	for (a = 1; data->argv[a]; a++)
 	{
 		ptr = string_chr(data->argv[a], '=');
-		if (p)
+		if (ptr)
 			alias_set(data, data->argv[a]);
 		else
-			print_alias(node_starts(data->alias, data->argv[i], '='));
+			print_alias(node_starts(data->alias, data->argv[a], '='));
 	}
 
 	return (0);
