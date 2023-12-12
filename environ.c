@@ -14,9 +14,9 @@ int print_env(data_t *data)
 }
 
 /**
- * _getenv - gets the value of an environment variable
- * @data: framework containing potential arguments. Used to maintain
- * @name: env variable name
+ * _getenv - gets the value of an environ variable
+ * @data: structure containing potential arguments. Used to maintain
+ * @name: environment variable name
  *
  * Return: the value
  */
