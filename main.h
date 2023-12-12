@@ -193,7 +193,7 @@ void set_data(data_t *, char **);
 void free_data(data_t *, int);
 
 /* toem_environ.c */
-char *_getenv(data_t *);
+char *_getenv(data_t *, const char *);
 int print_env(data_t *);
 int my_setenv(data_t *);
 int _myunsetenv(data_t *);
