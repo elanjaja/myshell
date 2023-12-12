@@ -146,7 +146,7 @@ int _getline(data_t *data, char **ptr, size_t *length)
 		_cpystr(new_p, buf + a, k - a + 1);
 
 	s += k - a;
-	i = k;
+	a = k;
 	p = new_p;
 
 	if (length)
