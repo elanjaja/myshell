@@ -25,7 +25,7 @@ int alias_unset(data_t *data, char *str)
 	char *ptr, c;
 	int result;
 
-	ptr = string_chr(str, '=');
+	ptr = str_chr(str, '=');
 	if (!ptr)
 		return (1);
 	c = *ptr;
@@ -47,7 +47,7 @@ int alias_set(data_t *data, char *str)
 {
 	char *ptr;
 
-	ptr = string_chr(str, '=');
+	ptr = str_chr(str, '=');
 	if (!ptr)
 		return (1);
 	if (!*++ptr)
@@ -69,7 +69,7 @@ int print_alias(list_t *node)
 
 	if (node)
 	{
-		ptr = string_chr(node->str, '=');
+		ptr = str_chr(node->str, '=');
 		for (a = node->str; a <= ptr; a++)
 			write_character(*a);
 		write_character('\'');
@@ -104,7 +104,7 @@ int manage_alias(data_t *data)
 	}
 	for (a = 1; data->argv[a]; a++)
 	{
-		ptr = string_chr(data->argv[a], '=');
+		ptr = str_chr(data->argv[a], '=');
 		if (ptr)
 			alias_set(data, data->argv[a]);
 		else

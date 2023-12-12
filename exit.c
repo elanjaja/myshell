@@ -58,12 +58,12 @@ char *_catstr(char *dest, char *source, int num)
 }
 
 /**
- **_chrstr - locates a character in a string
+ **str_chr - locates a character in a string
  *@str: the string to be parsed
  *@chr: the character to look for
  *Return:  pointer to the first occurrence of the character in the string
  */
-char *_chrstr(char *str, char chr)
+char *str_chr(char *str, char chr)
 {
 	do {
 		if (*str == chr)

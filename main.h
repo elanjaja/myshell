@@ -182,7 +182,7 @@ int my_help(data_t *);
 int display_history(data_t *);
 int manage_alias(data_t *);
 
-/*toem_getlin.c */
+/*toem_getline.c */
 ssize_t get_input(data_t *);
 int _getline(data_t *, char **, size_t *);
 void interruptHandler(int);

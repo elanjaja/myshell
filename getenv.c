@@ -71,8 +71,8 @@ int set_env(data_t *data, char *var, char *value)
 	if (!buf)
 		return (1);
 	copy_string(buf, var);
-	string_cat(buf, "=");
-	string_cat(buf, value);
+	_catstr(buf, "=");
+	_catstr(buf, value);
 	node = data->env;
 	while (node)
 	{
