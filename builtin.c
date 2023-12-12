@@ -62,7 +62,7 @@ int my_cd(data_t *data)
 		}
 		print_string(_getenv(data, "OLDPWD=")), write_character('\n');
 		chdir_result =
-			chdir((dir = get_env(data, "OLDPWD=")) ? dir : "/");
+			chdir((dir = _getenv(data, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		chdir_result = chdir(data->argv[1]);

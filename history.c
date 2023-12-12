@@ -11,7 +11,7 @@ char *history_file(data_t *data)
 {
 	char *buf, *dir;
 
-	dir = get_env(data, "HOME=");
+	dir = _getenv(data, "HOME=");
 	if (!dir)
 		return (NULL);
 	buf = malloc(sizeof(char) * (string_length(dir) + string_length(HIST_FILE) + 2));

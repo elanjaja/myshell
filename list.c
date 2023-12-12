@@ -4,11 +4,11 @@
  * add_node - adds a node to the start of the list
  * @head: address of pointer to head node
  * @str: str field of node
- * @index: node index used by history
+ * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *add_node(list_t **head, const char *str, int index)
+list_t *add_node(list_t **head, const char *str, int num)
 {
 	list_t *new_head;
 
@@ -18,7 +18,7 @@ list_t *add_node(list_t **head, const char *str, int index)
 	if (!new_head)
 		return (NULL);
 	_memset((void *)new_head, 0, sizeof(list_t));
-	new_head->index = index;
+	new_head->num = num;
 	if (str)
 	{
 		new_head->str = _strdup(str);
