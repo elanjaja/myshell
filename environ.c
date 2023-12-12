@@ -14,13 +14,13 @@ int print_env(data_t *data)
 }
 
 /**
- * _getenv - gets the value of an environ variable
+ * get_env - gets the value of an environ variable
  * @data: structure containing potential arguments. Used to maintain
  * @name: environment variable name
  *
  * Return: the value
  */
-char *_getenv(data_t data, const char *name)
+char *get_env(data_t data, const char *name)
 {
 	list_t *node = data->env;
 	char *ptr;

@@ -45,24 +45,24 @@ int my_cd(data_t *data)
 		print_string("Error: Failed to get current directory\n");
 	if (!data->argv[1])
 	{
-		dir = _getenv(data, "HOME=");
+		dir = get_env(data, "HOME=");
 		if (!dir)
 			chdir_result =
-				chdir((dir = _getenv(data, "PWD=")) ? dir : "/");
+				chdir((dir = get_env(data, "PWD=")) ? dir : "/");
 		else
 			chdir_result = chdir(dir);
 	}
 	else if (string_compare(data->argv[1], "-") == 0)
 	{
-		if (!_getenv(data, "OLDPWD="))
+		if (!get_env(data, "OLDPWD="))
 		{
 			print_string(a);
 			write_character('\n');
 			return (1);
 		}
-		print_string(_getenv(data, "OLDPWD=")), write_character('\n');
+		print_string(get_env(data, "OLDPWD=")), write_character('\n');
 		chdir_result =
-			chdir((dir = _getenv(data, "OLDPWD=")) ? dir : "/");
+			chdir((dir = get_env(data, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		chdir_result = chdir(data->argv[1]);
@@ -73,7 +73,7 @@ int my_cd(data_t *data)
 	}
 	else
 	{
-		set_env(data, "OLDPWD", _getenv(data, "PWD="));
+		set_env(data, "OLDPWD", get_env(data, "PWD="));
 		set_env(data, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);

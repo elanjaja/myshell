@@ -100,7 +100,7 @@ void find_cmd(data_t *data)
 	if (!k)
 		return;
 
-	path = find_path(data, _getenv(data, "PATH="), data->argv[0]);
+	path = find_path(data, get_env(data, "PATH="), data->argv[0]);
 	if (path)
 	{
 		data->path = path;
@@ -108,7 +108,7 @@ void find_cmd(data_t *data)
 	}
 	else
 	{
-		if ((interactive_mood(data) || _getenv(data, "PATH=")
+		if ((interactive_mood(data) || get_env(data, "PATH=")
 			|| data->argv[0][0] == '/') && executable(data, data->argv[0]))
 			execute_command(data);
 		else if (*(data->arg) != '\n')
