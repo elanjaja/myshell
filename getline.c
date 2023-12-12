@@ -127,7 +127,7 @@ int _getline(data_t *data, char **ptr, size_t *length)
 	p = *ptr;
 	if (p && length)
 		s = *length;
-	if (i == len)
+	if (a == len)
 		a = len = 0;
 
 	r = read_buffer(data, buf, &len);
@@ -136,14 +136,14 @@ int _getline(data_t *data, char **ptr, size_t *length)
 
 	c = str_chr(buf + a, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
-	new_p = realloc(p, s, s ? s + k : k + 1);
+	new_p = _realloc(p, s, s ? s + k : k + 1);
 	if (!new_p) /* MALLOC FAILURE! */
 		return (p ? free(p), -1 : -1);
 
 	if (s)
 		_strncat(new_p, buf + a, k - a);
 	else
-		copy_string(new_p, buf + a, k - a + 1);
+		_cpystr(new_p, buf + a, k - a + 1);
 
 	s += k - a;
 	i = k;

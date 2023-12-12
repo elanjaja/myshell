@@ -2,15 +2,15 @@
 #define _MAIN_H_
 
 #include <stdio.h>
-#include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <string.h>
-#include <limits.h>
-#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <fcntl.h>
+#include <errno.h>
 
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
@@ -51,26 +51,26 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct passdata -  includes placeholder values meant for passing into a function,
- *    enabling a consistent prototype for a function pointer structure.
- *@arg: represents a string derived from 'getline' that holds arguments.
- *@argv: contains a string array created from the arguments passed.
- *@path: denotes a string pathway for the ongoing command.
- *@argc: represents the number of arguments passed to a program or function.
- *@linecount: denotes the quantity of errors found within a specific set of lines or code.
- *@err_num: the error code used for exiting functions exit()s
- *@linecount_flag: indicates whether to include the current line of input in the counting process.
+ *struct passdata - contains pseudo-arguements to pass into a function,
+ *		allowing uniform prototype for function pointer struct
+ *@arg: a string generated from getline containing arguements
+ *@argv: an array of strings generated from arg
+ *@path: a string path for the current command
+ *@argc: the argument count
+ *@line_count: the error count
+ *@err_num: the error code for exit()s
+ *@linecount_flag: if on count this line of input
  *@fname: the program filename
- *@env: Create a linked list that contains a localized copy of the environment variables.
- *@environ: Generate a customized and modified version of the environment variables LL env
- *@history: The node representing historical data
- *@alias: an alias node
- *@env_changed: If there has been a modification to the environment, then the statement is active.
- *@status: reflects the execution status of the most recent command
- *@cmd_buf:  active when referencing the pointer to cmd_buffer in a chained context
+ *@env: linked list local copy of environ
+ *@environ: custom modified copy of environ from LL env
+ *@history: the history node
+ *@alias: the alias node
+ *@env_changed: on if environ was changed
+ *@status: the return status of the last exec'd command
+ *@cmd_buf: address of pointer to cmd_buf, on if chaining
  *@cmd_buf_type: CMD_type ||, &&, ;
- *@readfd: the file descriptor used for reading line input.
- *@histcount: the total count of historical line numbers.
+ *@readfd: the fd from which to read line input
+ *@histcount: the history line number count
  */
 typedef struct passdata
 {
@@ -102,12 +102,12 @@ typedef struct passdata
 /**
  *struct builtin - contains a builtin string and related function
  *@type: the builtin command flag
- *@function: the function
+ *@func: the function
  */
 typedef struct builtin
 {
 	char *type;
-	int (*function)(data_t *);
+	int (*func)(data_t *);
 } builtin_table;
 
 
@@ -128,25 +128,25 @@ int loophsh(char **);
 /* toem_errors.c */
 void error_puts(char *);
 int error_putchar(char);
-int _putfd(char chr, int fd);
+int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
 /* toem_string.c */
 int string_length(char *);
 int string_compare(char *, char *);
 char *starts_with(const char *, const char *);
-char *string_cat(char *, char *);
+char *_catstr(char *, char *);
 
 /* toem_string1.c */
 char *copy_string(char *, char *);
-char *duplicate_string(const char *);
+char *_strdup(const char *);
 void print_string(char *);
 int write_character(char);
 
 /* toem_exits.c */
 char *_cpystr(char *, char *, int);
-char *_catstr(char *, char *, int);
-char *_chrstr(char *, char);
+char *_strncat(char *, char *, int);
+char *str_chr(char *, char);
 
 /* toem_tokenizer.c */
 char **split_string(char *, char *);
@@ -193,10 +193,10 @@ void set_data(data_t *, char **);
 void free_data(data_t *, int);
 
 /* toem_environ.c */
-char *get_env(data_t *, const char *);
+char *_getenv(data_t *, const char *);
 int print_env(data_t *);
 int my_setenv(data_t *);
-int my_unsetenv(data_t *);
+int _myunsetenv(data_t *);
 int populate_env(data_t *);
 
 /* toem_getenv.c */
@@ -205,7 +205,7 @@ int unset_env(data_t *, char *);
 int set_env(data_t *, char *, char *);
 
 /* toem_history.c */
-char *history_file(data_t *data);
+char *get_history(data_t *data);
 int write_history(data_t *data);
 int read_history(data_t *data);
 int build_history(data_t *data, char *buf, int linecount);

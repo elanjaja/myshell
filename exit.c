@@ -31,13 +31,13 @@ char *_cpystr(char *dest, char *source, int num)
 }
 
 /**
- **_catstr - concatenates two strings up to a specified length
+ **_strncat - concatenates two strings up to a specified length
  * @dest: the first string
  * @source: the second string to append
  * @num: the maximum number of characters to concatenate
  * Return: pointer to the concatenated string
  */
-char *_catstr(char *dest, char *source, int num)
+char *_strncat(char *dest, char *source, int num)
 {
 	int a, j;
 	char *s = dest;

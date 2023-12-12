@@ -87,10 +87,10 @@ int restore_alias(data_t *data)
 		if (!node)
 			return (0);
 		free(data->argv[0]);
-		p = string_chr(node->str, '=');
+		p = str_chr(node->str, '=');
 		if (!p)
 			return (0);
-		p = duplicate_string(p + 1);
+		p = _strdup(p + 1);
 		if (!p)
 			return (0);
 		data->argv[0] = p;
@@ -117,23 +117,23 @@ int restore_vars(data_t *data)
 		if (!string_compare(data->argv[a], "$?"))
 		{
 			replace_string(&(data->argv[a]),
-				duplicate_string(convert_string(data->status, 10, 0)));
+				_strdup(convert_string(data->status, 10, 0)));
 			continue;
 		}
 		if (!string_compare(data->argv[a], "$$"))
 		{
 			replace_string(&(data->argv[a]),
-				duplicate_string(convert_string(getpid(), 10, 0)));
+				_strdup(convert_string(getpid(), 10, 0)));
 			continue;
 		}
 		node = node_starts(data->env, &data->argv[a][1], '=');
 		if (node)
 		{
 			replace_string(&(data->argv[a]),
-				duplicate_string(string_chr(node->str, '=') + 1));
+				_strdup(str_chr(node->str, '=') + 1));
 			continue;
 		}
-		replace_string(&data->argv[a], duplicate_string(""));
+		replace_string(&data->argv[a], _strdup(""));
 
 	}
 	return (0);

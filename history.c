@@ -19,8 +19,8 @@ char *history_file(data_t *data)
 		return (NULL);
 	buf[0] = 0;
 	copy_string(buf, dir);
-	string_cat(buf, "/");
-	string_cat(buf, HIST_FILE);
+	_catstr(buf, "/");
+	_catstr(buf, HIST_FILE);
 	return (buf);
 }
 

@@ -68,11 +68,11 @@ char *find_path(data_t *data, char *pathstr, char *command)
 		{
 			path = copy_chars(pathstr, current_position, a);
 			if (!*path)
-				string_cat(path, command);
+				_catstr(path, command);
 			else
 			{
-				string_cat(path, "/");
-				string_cat(path, command);
+				_catstr(path, "/");
+				_catstr(path, command);
 			}
 			if (executable(data, path))
 				return (path);

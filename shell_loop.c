@@ -61,7 +61,7 @@ int find_builtin_command(data_t *data)
 		{"help", my_help},
 		{"history", display_history},
 		{"setenv", my_setenv},
-		{"unsetenv", my_unsetenv},
+		{"unsetenv", _myunsetenv},
 		{"cd", my_cd},
 		{"alias", manage_alias},
 		{NULL, NULL}

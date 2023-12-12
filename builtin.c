@@ -45,7 +45,7 @@ int my_cd(data_t *data)
 		print_string("Error: Failed to get current directory\n");
 	if (!data->argv[1])
 	{
-		dir = get_env(data, "HOME=");
+		dir = _getenv(data, "HOME=");
 		if (!dir)
 			chdir_result =
 				chdir((dir = _getenv(data, "PWD=")) ? dir : "/");
@@ -60,7 +60,7 @@ int my_cd(data_t *data)
 			write_character('\n');
 			return (1);
 		}
-		print_string(get_env(data, "OLDPWD=")), write_character('\n');
+		print_string(_getenv(data, "OLDPWD=")), write_character('\n');
 		chdir_result =
 			chdir((dir = get_env(data, "OLDPWD=")) ? dir : "/");
 	}
