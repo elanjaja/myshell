@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * interactive_mode - returns true if shell is interactive mode
- * @data: pointer to information framework
+ * interactive - returns true if shell is interactive mode
+ * @data: struct address
  *
  * Return: 1 if interactive mode, 0 otherwise
  */

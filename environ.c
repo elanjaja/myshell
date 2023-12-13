@@ -14,15 +14,16 @@ int print_env(data_t *data)
 }
 
 /**
- * get_env - gets the value of an environ variable
+ * get_environ - gets the value of an environ variable
  * @data: structure containing potential arguments. Used to maintain
- * @name: environment variable name
- *
- * Return: the value
+ * @name: environment variable
+ * Return: the value of the environment variable.
  */
-char *get_env(data_t data, const char *name)
+char *get_environ(data_t *data, const char *name)
 {
-	list_t *node = data->env;
+	/* Access members using -> operator if data is a pointer */
+	list_t *node = (data->env);
+	/* Rest of the function logic */
 	char *ptr;
 
 	while (node)
