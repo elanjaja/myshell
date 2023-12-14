@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * interactive - returns true if shell is interactive mode
+ * interactive_mode - returns true if shell is interactive mode
  * @data: struct address
  *
  * Return: 1 if interactive mode, 0 otherwise

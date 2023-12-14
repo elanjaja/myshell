@@ -15,7 +15,7 @@ int shell_loop(data_t *data, char **av)
 	while (rs != -1 && builtin_return != -2)
 	{
 		clear_data(data);
-		if (interactive_mood(data))
+		if (!interactive_mood(data))
 			print_string("$ ");
 		error_putchar(BUF_FLUSH);
 		rs = get_input(data);
@@ -26,7 +26,7 @@ int shell_loop(data_t *data, char **av)
 			if (builtin_return == -1)
 				find_cmd(data);
 		}
-		else if (interactive_mood(data))
+		else if (!interactive_mood(data))
 			write_character('\n');
 		free_data(data, 0);
 	}
